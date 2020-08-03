@@ -21,5 +21,14 @@ service vendor.move_fingerprint_data /system/bin/move_fingerprint_data.sh
     disabled
     oneshot
 
+service vendor.disable_fingerprint /vendor/bin/disable_fingerprint.sh
+    user root
+    group root
+    disabled
+    oneshot
+
 on property:ro.product.device=ugg
     start vendor.fps_hal
+
+on property:ro.product.device=ugglite
+    start vendor.disable_fingerprint
